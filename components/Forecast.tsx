@@ -10,6 +10,41 @@ import {
 import { convertTemperature } from "@/lib/utils";
 import { Card, CardContent } from "./ui/card";
 
+type forecastType = {
+  dt: number;
+  main: {
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+    sea_level: number;
+    grnd_level: number;
+    humidity: number;
+    temp_kf: number;
+  };
+  weather: {
+    id: number;
+    main: string;
+    description: string;
+    icon: string;
+  }[];
+  clouds: {
+    all: number;
+  };
+  wind: {
+    speed: number;
+    deg: number;
+    gust: number;
+  };
+  visibility: number;
+  pop: number;
+  sys: {
+    pod: string;
+  };
+  dt_txt: string;
+};
+
 const WeatherForecast = ({ city, unit }: { city: string; unit: "C" | "F" }) => {
   const [weatherData, setForecast] = useState<any>([]);
 
@@ -49,7 +84,7 @@ const WeatherForecast = ({ city, unit }: { city: string; unit: "C" | "F" }) => {
       className="w-full max-w-xl rounded-lg bg-white shadow-lg p-4 md:p-6 lg:p-8 xl:p-12"
     >
       <CarouselContent className="items-center">
-        {weatherData.map((forecast) => (
+        {weatherData.map((forecast: forecastType) => (
           <CarouselItem
             key={forecast.dt}
             className="sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
@@ -62,7 +97,7 @@ const WeatherForecast = ({ city, unit }: { city: string; unit: "C" | "F" }) => {
                   </div>
                   <div className="forecast-icon">
                     <img
-                      src={`http://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`}
+                      src={`http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png`}
                       alt={forecast.weather[0].description}
                       className="drop-shadow"
                     />
