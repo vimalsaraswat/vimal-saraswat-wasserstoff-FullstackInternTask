@@ -17,8 +17,14 @@ const CurrentWeather = ({ city, unit }: { city: string; unit: "C" | "F" }) => {
   if (!weatherData.name) {
     return (
       <div>
-        <h2>Weather Data for {city}</h2>
-        <p>City not found</p>
+        <div className="text-center">
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+            City not found
+          </h2>
+          <p className="mt-6 text-base leading-7 text-gray-600">
+            Sorry, we couldn’t find the city you’re looking for.
+          </p>
+        </div>
       </div>
     );
   }

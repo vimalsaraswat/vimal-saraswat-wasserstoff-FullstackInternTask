@@ -59,11 +59,7 @@ const WeatherForecast = ({ city, unit }: { city: string; unit: "C" | "F" }) => {
   }, [city]);
 
   if (weatherData.length === 0 || !weatherData) {
-    return (
-      <div>
-        <p>City not found</p>
-      </div>
-    );
+    return <p className="sr-only">City not found</p>;
   }
 
   const formatDate = (dt_txt: string) => {
